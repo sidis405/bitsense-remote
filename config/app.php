@@ -152,6 +152,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Acme2\Calc\CalcServiceProvider::class,
 
         /*
          * Application Service Providers...

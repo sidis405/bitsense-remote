@@ -82,6 +82,8 @@
                     Bitsense
                 </div>
 
+                @include('calc::something')
+
                 <div class="links">
                     <a href="{{ route('chiSiamo') }}">Chi Siamo</a>
 

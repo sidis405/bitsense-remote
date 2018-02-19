@@ -21,11 +21,12 @@ class PostsController extends Controller
 
         // Model event - quando succede qualcosa
         // eseguito l'operazione (salvataggio, aggiornamento)
-        // emettere l'evento dal modello
+        // emeevento dattere l'l modello
         // eseguito il listener che intercetta il modello
         // inviato un job per l'esecuzione a una coda di elaborazione
         // dato risposta a utente
         // nella coda di elaborazione, abbiamo eseguito il job.
+        // esegue il commando e invia la mail
 
 
         $posts = new Post;
