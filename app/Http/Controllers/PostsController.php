@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
-        $this->middleware('can:update,post')->only('show', 'edit');
+        // $this->middleware('can:update,post')->only('destroy', 'edit');
     }
     /**
      * Display a listing of the resource.
@@ -18,6 +18,16 @@ class PostsController extends Controller
      */
     public function index()
     {
+
+        // Model event - quando succede qualcosa
+        // eseguito l'operazione (salvataggio, aggiornamento)
+        // emettere l'evento dal modello
+        // eseguito il listener che intercetta il modello
+        // inviato un job per l'esecuzione a una coda di elaborazione
+        // dato risposta a utente
+        // nella coda di elaborazione, abbiamo eseguito il job.
+
+
         $posts = new Post;
         $posts->bind('mysql', 'qwerty12345');
 
@@ -42,7 +52,6 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -76,7 +85,6 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
     }
 
     /**
