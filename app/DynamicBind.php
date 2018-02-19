@@ -2,10 +2,11 @@
 
 namespace App;
 
-trait BindsDynamically
+trait DynamicBind
 {
     protected $connection = null;
     protected $table = null;
+
 
     public function bind(string $connection, string $table)
     {
@@ -20,10 +21,4 @@ trait BindsDynamically
 
         return $model;
     }
-
-    // $product = new Product;
-    // $product->getTable();
-    // $product->bind('connection', 'oooops');
-    // $product->get();
-    // $product->first();
 }

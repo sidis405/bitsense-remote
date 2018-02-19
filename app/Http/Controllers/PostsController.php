@@ -18,7 +18,10 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        $posts = new Post;
+        $posts->bind('mysql', 'qwerty12345');
+
+        return $posts->get();
     }
 
     /**

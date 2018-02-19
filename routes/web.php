@@ -3,8 +3,8 @@
 //posts section
 Route::resource('posts', 'PostsController');
 
-Route::get('posts/{post}/edit', 'PostsController@edit');
-Route::get('posts/{post}', 'PostsController@edit');
+Route::get('posts/{post}/edit', 'PostsController@edit')->name('posts.edit');
+Route::get('posts/{post}', 'PostsController@edit')->name('posts.show');
 
 
 Route::get('/', function () {
