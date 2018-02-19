@@ -19,7 +19,7 @@ class PostsController extends Controller
     public function index()
     {
 
-        // Model event - quando succede qualcosa
+        // Model event - OBSERVER Pattern - quando succede qualcosa
         // eseguito l'operazione (salvataggio, aggiornamento)
         // emeevento dattere l'l modello
         // eseguito il listener che intercetta il modello
