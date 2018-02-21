@@ -10,6 +10,7 @@ class PostsController extends Controller
     public function __construct()
     {
         // $this->middleware('can:update,post')->only('destroy', 'edit');
+        $this->middleware('auth')->only('create', 'store');
     }
     /**
      * Display a listing of the resource.
@@ -29,10 +30,14 @@ class PostsController extends Controller
         // esegue il commando e invia la mail
 
 
-        $posts = new Post;
-        $posts->bind('mysql', 'qwerty12345');
+        // $posts = new Post;
+        // $posts->bind('mysql', 'qwerty12345');
 
-        return $posts->get();
+        // return $posts->get();
+
+        $posts = Post::with('user')->latest()->paginate(15);
+
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -42,7 +47,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -53,6 +58,9 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        auth()->user()->posts()->create($request->only('title', 'body', 'user_id'));
+
+        return redirect()->route('posts.index');
     }
 
     /**
