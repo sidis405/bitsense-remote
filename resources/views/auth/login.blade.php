@@ -8,6 +8,7 @@
                 <div class="card-header">Login</div>
 
                 <div class="card-body">
+                    <a href="/auth/bitsense" class="btn btn-primary btn-block">Login With Bitsense</a>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

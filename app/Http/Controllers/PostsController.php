@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Bitsense\Blog\Repositories\PostRepository;
 
 class PostsController extends Controller
 {
-    public function __construct()
+    protected $postRepository;
+    protected $postFactory;
+
+    public function __construct(PostRepository $postRepository)
     {
         // $this->middleware('can:update,post')->only('destroy', 'edit');
         $this->middleware('auth')->only('create', 'store');
+        $this->postRepository = $postRepository;
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +40,13 @@ class PostsController extends Controller
 
         // return $posts->get();
 
+        // $posts = $this->postRepository->latest()->paginate(15);
+
         $posts = Post::with('user')->latest()->paginate(15);
+
+        if (request()->wantsJson()) {
+            return $posts;
+        }
 
         return view('posts.index')->withPosts($posts);
     }
@@ -58,7 +69,10 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        auth()->user()->posts()->create($request->only('title', 'body', 'user_id'));
+        $data = $request->only('title', 'body');
+        $data['user_id'] = auth()->id();
+
+        $post = $this->postRepository->create($data);
 
         return redirect()->route('posts.index');
     }
@@ -94,6 +108,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $post->update($request->only("title"));
     }
 
     /**

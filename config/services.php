@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'bitsense_auth' => [
+        'client_id' => '3',
+        'client_secret' => 'wWvsz99KLya23m6HZJDFQnqTRURi9GZHLZGsmf1y',
+        'redirect' => 'https://bitsense.dev/auth/custom-api'
+    ]
+
 ];
